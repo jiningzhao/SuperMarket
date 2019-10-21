@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+    <title>进货</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+	<style type="text/css">
+		body{
+			margin: auto;
+			margin-top: 100px;
+
+		}
+		#B{
+			padding: 30px 100px 80px 100px;
+			width: 700px;
+			margin: auto;
+			margin-left: 50px;
+			background-color: grey;
+			border-radius: 10px;
+			height: 553px;
+		}
+		h1{
+			text-align: center;
+			color: white;
+			padding-bottom: 20px;
+		}
+		#put{
+			margin: 23px 23px 0px 23px;
+			width: 200px;
+		}
+		table{
+			width: 480px;
+			margin: auto;
+			background-color: white;
+		}
+		th{
+			border: 2px solid black;
+		}
+		td{
+			border: 2px solid black;
+		}
+		li{
+			margin: 0 100px 0 100px;
+			background-color: #9d9d9d;
+			color: white;
+			padding: 20px;
+		}
+	</style>
+</head>
+<body background={{url_for('static', filename='image/565bfb9acdb90.jpg')}}>
+<div id="B" class="col-md-4">
+	<h1>售货平台</h1>
+	<a href="#CH1" class="N" style="margin-top: 0px;margin-left: 455px;margin-bottom:10px;color: white">帮助</a>
+	<form action="/takeout">
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">条形码</span>
+				<input type="text" name="code" id="firstname" class="form-control" placeholder="请录入条形码"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">数量</span>
+				<input type="text" name="number" id="firstname" class="form-control" placeholder="请输入数量"/>
+			</div>
+		</div>	<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">实收</span>
+				<input type="text" name="A" id="firstname" class="form-control" placeholder="实收"/>
+			</div>
+		</div>
+	<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">找零</span>
+				<input type="text" name="B" id="firstname" class="form-control" placeholder="找零" value={{sum2}} />
+			</div>
+	</div>
+		<!--<div class="form-group">-->
+			<!--<div class="input-group">-->
+				<!--<span class="input-group-addon">日期时间</span>-->
+				<!--<input type="text" name="time" id="firstname" class="form-control" placeholder="日期时间" disabled=""/>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="form-group">-->
+			<!--<div class="input-group">-->
+				<!--<span class="input-group-addon">商品总价</span>-->
+				<!--<input type="text" name="all_pay" id="firstname" class="form-control" placeholder="商品总价" disabled=""/>-->
+			<!--</div>-->
+		<!--</div>-->
+		<input type="text" name="data" value={{data}} hidden>
+		<input type="submit" class="form-control btn btn-primary btn-md btn-warning" value="总价" id="put"/>
+		<a href="/menu"><input type="button" class="form-control btn btn-primary btn-md" value="退出" id="put"/></a>
+
+	</form>
+	<ul class="h6 list-unstyled" id="CH1">
+		<li>条形码：输入条形码，后台遍历库存，找出相应的商品</li>
+		<li>数量：提取商品数量，并且计算当前商品总价</li>
+		<li>实收：输入实际收款金额</li>
+		<li>找零：通过计算自动显示找零金额。</li>
+		<li>商品表：显示当前顾客购买所有商品，并在下方打印当前总金额。</li>
+	</ul>
+
+</div>
+<div id="B" class="col-md-4">
+	<h1>商品列表</h1>
+	<table>
+		<tr>
+			<th>条形码</th>
+			<th>商品名称</th>
+			<th>零售价</th>
+			<th>数量</th>
+			<th>总价(元)</th>
+			<th>时间</th>
+		</tr>
+		{% for i in data %}
+		<tr>
+			<td>{{i['code']}}</td>
+			<td>{{i['name']}}</td>
+			<td>{{i['value']}}</td>
+			<td>{{i['number']}}</td>
+			<td>{{i['all_pay']}}</td>
+			<td>{{i['time']}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<h1>总价：{{sum1}}元</h1>
+</div>
+
+<script src={{url_for('static', filename='js/jquery.min.js')}}></script>
+<script src={{url_for('static', filename='js/bootstrap.min.js')}}></script>
+<script type="text/javascript">
+$(function () {
+    $(".h6").hide();
+	$(".N").click(function () {
+		$(".h6").toggle()
+    })
+})
+</script>
+</body>
+</html>

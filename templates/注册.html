@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+    <title>登录</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+    <style type="text/css">
+    	body{
+    		padding: 100px;
+
+    	}
+    	form{
+    		margin: auto;
+    		font-size: 16px;
+    		padding: 40px;
+    		border-radius: 10px;
+    		min-width: 500px;
+    		min-height: 200px;
+    		background-color: darkgray;
+
+    	}
+    	.A{
+    		border-radius: 10px;
+    		padding: 40px;
+    		width: 620px;
+    		height: 400px;
+    		margin: auto;
+    		background-color: gray;
+
+    	}
+    	h1{
+    		color: white;
+    		text-align: center;
+    	}
+		li{
+			margin: 0 100px 0 100px;
+			background-color: #9d9d9d;
+			color: white;
+			padding: 20px;
+		}
+    </style>
+
+</head>
+<body background={{url_for('static', filename='image/565bfb9acdb90.jpg')}}>
+<div class="A">
+	<h1>注册账号</h1>
+	<a href="#CH1" class="N" style="margin-top: 0px;margin-left: 455px;margin-bottom:10px;color: white">帮助</a>
+	<form style="margin: 20px;" class="form-horizontal" action="/signin">
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">注册账号</span>
+				<input type="text" name="username" id="username" class="form-control" placeholder="请输入您的账号"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">密码</span>
+				<input type="password" name="password1" id="password" class="form-control" placeholder="请输入您的密码"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">确认密码</span>
+				<input type="password" name="password2" id="password" class="form-control" placeholder="请再次输入您的密码"/>
+			</div>
+		</div>
+		<p>{{data}}</p>
+		<input type="submit" value="注册" class="btn btn-primary btn-md col-xs-3 col-xs-offset-2" />
+
+	</form>
+	<ul class="h6 list-unstyled" id="CH1">
+		<li>输入账户名：后台进行用户表的遍历查找，如果用户名已经存在，则提示该用户名已存在，请重新输入。</li>
+		<li>输入密码：检测没有输入的话，会提示密码为空，请重新输入。</li>
+		<li>再次输入密码：若检测与第一次输入密码不同，则提示两次密码不同，请重新输入。</li>
+	</ul>
+</div>
+<script src={{url_for('static', filename='js/jquery.min.js')}}></script>
+<script src={{url_for('static', filename='js/bootstrap.min.js')}}></script>
+<script type="text/javascript">
+$(function () {
+    $(".h6").hide();
+	$(".N").click(function () {
+		$(".h6").toggle()
+    })
+})
+</script>
+</body>
+</html>

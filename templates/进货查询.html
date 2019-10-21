@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+    <title>查询</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+	<style type="text/css">
+		body{
+			width: 600px;
+			margin: auto;
+			margin-top: 100px;
+
+		}
+		#B{
+			padding: 30px 100px 80px 100px;
+			width: 700px;
+			margin: auto;
+			background-color: grey;
+			border-radius: 10px;
+		}
+		h1{
+			text-align: center;
+			color: white;
+			padding-bottom: 20px;
+		}
+		#put{
+			margin: 23px 23px 0px 23px;
+			width: 200px;
+		}
+		table{
+			background-image: ;
+			text-align: center;
+			background-color: grey;
+			margin: auto;
+			color: #fff1bd;
+			margin-top: 30px;
+		}
+		td{
+			width: 100px;
+			border: 2px solid #fff1bd;
+		}
+		th{
+			text-align: center;
+			width: 100px;
+			border: 2px solid #fff1bd;
+		}
+		li{
+			margin: 0 100px 0 100px;
+			background-color: #9d9d9d;
+			color: white;
+			padding: 20px;
+		}
+	</style>
+</head>
+<body background={{url_for('static', filename='image/565bfb9acdb90.jpg')}}>
+<div id="B">
+	<h1>进货查询</h1>
+	<a href="#CH1" class="N" style="margin-top: 0px;margin-left: 455px;margin-bottom:10px;color: white">帮助</a>
+	<form action="/select_takein">
+		
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">条形码</span>
+				<input type="text" name="code" id="" class="form-control" placeholder="请输入条形码"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">商品名称</span>
+				<input type="text" name="name" id="" class="form-control" placeholder="请输入商品名称"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">进货日期</span>
+				<input type="text" name="date1" id="" class="form-control" placeholder="请输入想要查询的起始日期"/>
+			</div>
+		</div>
+		<input type="submit" class="form-control btn btn-primary btn-md" value="提交" id="put" />
+		<a href="/menu"><input type="button" class="form-control btn btn-primary btn-md" value="退出" id="put"/></a>
+	</form>
+<ul class="h6 list-unstyled" id="CH1">
+		<li>输入条形码或商品名称（和采购日期），显示商品（在某日）的进货情况</li>
+	</ul>
+	<table>
+		<tr>
+			<th>序号</th>
+			<th>条形码</th>
+			<th>商品名称</th>
+			<th>进价</th>
+			<th>数量</th>
+			<th>时间</th>
+		</tr>
+		{% for i in data %}
+		<tr>
+			<td>{{i['no']}}</td>
+			<td>{{i['code']}}</td>
+			<td>{{i['name']}}</td>
+			<td>{{i['price']}}</td>
+			<td>{{i['number']}}</td>
+			<td>{{i['time']}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+
+
+<script src={{url_for('static', filename='js/jquery.min.js')}}></script>
+<script src={{url_for('static', filename='js/bootstrap.min.js')}}></script>
+<script type="text/javascript">
+$(function () {
+    $(".h6").hide();
+	$(".N").click(function () {
+		$(".h6").toggle()
+    })
+})
+</script>
+
+</body>
+</html>

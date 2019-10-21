@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+    <title>首页</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+    <style type="text/css">
+    	body{
+    		padding: 100px;
+
+    	}
+    	.A{
+    		border-radius: 10px;
+    		padding: 40px;
+    		width: 620px;
+    		height: 440px;
+    		margin: auto;	
+    		background-color: gray;
+    		
+    	}
+    	h1{
+    		color: white;
+    		text-align: center;
+    	}
+    	.B{
+    		margin: auto;
+    		width: 250px;
+    	}
+    	a{
+    		text-align: center;
+    		color: white;
+    		font-size: 20px;
+    		margin: 20px;
+    		background-color: darkgray;
+    	}
+		#CH1 li{
+			margin: 0 100px 0 100px;
+			background-color: #9d9d9d;
+			color: white;
+			padding: 20px;
+		}
+    </style>
+
+</head>
+<body background={{url_for('static', filename='image/565bfb9acdb90.jpg')}}>
+<div class="A">
+	<h1>功能菜单</h1>
+	<a href="#CH1" class="N" style="margin-top: 0px;margin-left: 455px;margin-bottom:10px;color: white">帮助</a>
+	<div class="B">
+		<ul class="nav nav-pills nav-stacked">
+			<li><a href="/takein">库存管理</a></li>
+			<li><a href="/takeout">销售管理</a></li>
+			<li class="dropdown">
+				<a href="#" data-toggle="dropdown">
+					信息查询
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="/select_DB">库存查询</a></li>
+					<li><a href="/select_takein">进货查询</a></li>
+					<li><a href="/select_takeout">售货查询</a></li>
+				</ul>
+			</li>
+			<li><a href="/">退出</a></li>
+		</ul>
+	</div>
+	<ul class="h6 list-unstyled" id="CH1">
+		<li>首页是个菜单，有如下几个选项：</li>
+		<li>库存管理：也就是进货，点击进入进货界面</li>
+		<li>销售管理：就是售货，点击进入售货界面</li>
+		<li>信息查询：这是个下拉菜单，有三个菜单项，分别是库存查询、进货查询售货查询，点击分别到这三个查询界面。</li>
+		<li>退出：点击回到登录界面。</li>
+	</ul>
+
+</div>
+<script src={{url_for('static', filename='js/jquery.min.js')}}></script>
+<script src={{url_for('static', filename='js/bootstrap.min.js')}}></script>
+<script type="text/javascript">
+$(function () {
+    $(".h6").hide();
+	$(".N").click(function () {
+		$(".h6").toggle()
+    })
+})
+</script>
+</body>
+</html>

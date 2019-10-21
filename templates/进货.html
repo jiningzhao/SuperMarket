@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+    <title>进货</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+	<style type="text/css">
+		body{
+			width: 600px;
+			margin: auto;
+			margin-top: 100px;
+
+		}
+		#B{
+			padding: 30px 100px 80px 100px;
+			width: 700px;
+			margin: auto;
+			background-color: grey;
+			border-radius: 10px;
+		}
+		h1{
+			text-align: center;
+			color: white;
+			padding-bottom: 20px;
+		}
+		#put{
+			margin: 23px 23px 0px 23px;
+			width: 200px;
+		}
+		li{
+			margin: 0 100px 0 100px;
+			background-color: #9d9d9d;
+			color: white;
+			padding: 20px;
+		}
+	</style>
+</head>
+<body background={{url_for('static', filename='image/565bfb9acdb90.jpg')}}>
+<div id="B">
+	<h1>进货管理器</h1>
+	<a href="#CH1" class="N" style="margin-top: 0px;margin-left: 455px;margin-bottom:10px;color: white">帮助</a>
+	<form action="/takein">
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">顺序码</span>
+				<input type="text" name="no" id="firstname" class="form-control" placeholder="请输入顺序码" value={{no}} />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">条形码</span>
+				<input type="text" name="code" id="firstname" class="form-control" placeholder="请输入条形码"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">商品名称</span>
+				<input type="text" name="name" id="firstname" class="form-control" placeholder="请输入商品名称"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">进价</span>
+				<input type="text" name="price" id="firstname" class="form-control" placeholder="请输入进价"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">零售价</span>
+				<input type="text" name="value" id="firstname" class="form-control" placeholder="请输入零售价"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">采购数量</span>
+				<input type="text" name="number" id="firstname" class="form-control" placeholder="请输入采购数量"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">生产厂商</span>
+				<input type="text" name="vendor" id="firstname" class="form-control" placeholder="请输入生产厂商"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">规格</span>
+				<input type="text" name="gg" id="firstname" class="form-control" placeholder="请输入规格"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">采购日期</span>
+				<input type="text" name="time" id="firstname" class="form-control" disabled value={{time}} />
+			</div>
+		</div>
+		<input type="submit" class="form-control btn btn-primary btn-md" value="提交" id="put"/>
+		<a href="/menu"><input type="button" class="form-control btn btn-primary btn-md" value="退出" id="put"/></a>
+	</form>
+	<ul class="h6 list-unstyled" id="CH1">
+		<li>顺序码：遍历库存项数目来自动生成</li>
+		<li>条形码：遍历库存查询所输入的条形码，如果已经存在，则直接改变库存中的number，如果不存在，则正常添加新商品。</li>
+		<li>商品名称：如果code已存在，此项无用（可不写），否则录入新添商品名称。</li>
+		<li>进价：如果code已存在，此项无用（可不写），否则录入新添商品进价。</li>
+		<li>零售价：如果code已存在，此项无用（可不写），否则录入新添商品零售价。</li>
+		<li>生产厂商：如果code已存在，此项无用（可不写），否则录入新添商品生产厂商。</li>
+		<li>规格：如果code已存在，此项无用（可不写），否则录入新添商品生产厂商。</li>
+		<li>采购日期：不可选，后台自动提取本机当前时间。</li>
+		<li>提交：提交表单内容到数据库——库存表、进货表。</li>
+		<li>退出：退出到首页。</li>
+	</ul>
+
+</div>
+
+
+
+<script src={{url_for('static', filename='js/jquery.min.js')}}></script>
+<script src={{url_for('static', filename='js/bootstrap.min.js')}}></script>
+<script type="text/javascript">
+$(function () {
+    $(".h6").hide();
+	$(".N").click(function () {
+		$(".h6").toggle()
+    })
+})
+</script>
+
+</body>
+</html>
